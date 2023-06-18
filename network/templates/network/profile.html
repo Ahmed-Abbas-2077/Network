@@ -1,4 +1,7 @@
 {% extends "network/layout.html" %}
+{% load static %}
+{% block title %}{{ user_profile.username }}{% endblock %}
+
 {% block body %}
 <script
   src="https://kit.fontawesome.com/2b554022ef.js"
@@ -18,30 +21,38 @@
         </a>
       {% endif %} 
     {% endif %}
-  {% for post in pagePosts %}
-    <div class="card">
-      <div class="card-body">
-        <a href="{% url 'profile' post.user %}">
-          <h5 class="card-title">{{ post.user }}</h5>
-        </a>
-        <p class="card-text">{{ post.content }}</p>
+    {% for post in pagePosts %}
+    <div class="card" id="post-{{ post.id }}" data-postid="{{ post.id }}">
+      <div class="card-body" data-postid="{{ post.id }}">
+        <a href="{% url 'profile' post.user %}"> <h5 class="card-title">{{ post.user }}</h5></a>
+        <p class="card-text" id="post-content-{{ post.id }}">{{ post.content }}</p>
         <p class="card-text">{{ post.timestamp }}</p>
         <p class="card-text">
-          <i class="fas fa-thumbs-up" style="color: #1877f2"></i>
-          {{ post.likes.count }} {% if post.likes.count != 1 %}likes{% else %}like
-          {% endif %}
+          <a href="" class="like" id="like-btn-{{ post.id }}" data-postid="{{ post.id }}">Like</a>
+          <i class="fas fa-thumbs-up" id="like-{{post.id}}" style="color: #1877F2;"></i>
+          {{ post.likes.count }}
+          {% if post.likes.count != 1 %}likes{% else %}like{% endif %}
         </p>
+        {% if user.is_authenticated %}
+          {% if user == post.user %}
+              <button class="edit-btn" id="edit-btn-{{ post.id }}" data-postid="{{ post.id }}">Edit</button>
+          {% endif %}
+        {% endif %}
       </div>
     </div>
-  {% endfor %} 
-  <nav aria-label="Page navigation example" style="margin-top: 20px;">
-    <ul class="pagination d-flex justify-content-center">
-    {% if pagePosts.has_previous %}
-      <li class="page-item"><a class="page-link" href="?page={{ pagePosts.previous_page_number }}">Previous</a></li>
-    {%endif%}
-    {% if pagePosts.has_next %}
-      <li class="page-item"><a class="page-link" href="?page={{ pagePosts.next_page_number }}">Next</a></li>
-    {%endif%}
-    </ul>
-  </nav>
+    {% endfor %} 
+    <nav aria-label="Page navigation example" style="margin-top: 20px;">
+      <ul class="pagination d-flex justify-content-center">
+      {% if pagePosts.has_previous %}
+        <li class="page-item"><a class="page-link" href="?page={{ pagePosts.previous_page_number }}">Previous</a></li>
+      {%endif%}
+      {% if pagePosts.has_next %}
+        <li class="page-item"><a class="page-link" href="?page={{ pagePosts.next_page_number }}">Next</a></li>
+      {%endif%}
+      </ul>
+    </nav>
+    {% endblock %}
+
+{% block script %}
+<script src="{% static 'network/index.js' %}"></script>
 {% endblock %}
