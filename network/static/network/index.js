@@ -1,7 +1,21 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
+    // Add a delegated event listener to handle the "Edit" button click
+    document.addEventListener('click', function(event) {
+        if (event.target.classList.contains('edit-btn')) {
+            const postId = event.target.dataset.postid;
+            replacePostContentWithTextarea(postId);
+        }
+    });
+});
+
+
+
+
+
     function replacePostContentWithTextarea(postId) {
-      // Get the post element
-      const post = document.getElementById(`post-${postId}`);
+        console.log(postId)
+    //   // Get the post element
+    //   const post = document.getElementById(`post-${postId}`);
       // Get the post content element
       const postContent = document.getElementById(`post-content-${postId}`);
       // Get the post content
@@ -15,10 +29,10 @@ document.addEventListener('DOMContentLoaded', function() {
       textarea.classList.add('form-control');
       // Set the textarea's value
       textarea.value = content;
-      // Replace the post content with the textarea
-      post.replaceChild(textarea, postContent);
+      // Replace the post content with the textarea element
+        postContent.parentNode.replaceChild(textarea, postContent);
       // Get the post's "Edit" button
-      const editBtn = post.querySelector('.edit-btn');
+      const editBtn = document.querySelector(`#edit-btn-${postId}`);
       // Change the "Edit" button's text to "Save"
       editBtn.textContent = 'Save';
       // Remove the "Edit" button's "edit-btn" class
@@ -27,18 +41,15 @@ document.addEventListener('DOMContentLoaded', function() {
       editBtn.classList.add('save-btn');
   }
   
-  // Add an event listener to handle the "Save" button click
-  document.addEventListener('click', function(event) {
-      if (event.target.classList.contains('save-btn')) {
-          // Get the post ID from the parent element
-          const postId = event.target.parentElement.dataset.postid;
-          // Get the edited content from the textarea
-          const textarea = event.target.parentElement.querySelector('textarea');
-          const editedContent = textarea.value;
-          // Call the function to save the edited post
-          saveEditedPost(postId, editedContent);
-      }
-  });
+// Update the event listener to target the "Save" button specifically
+document.addEventListener('click', function(event) {
+    if (event.target.classList.contains('save-btn')) {
+        const postId = event.target.parentElement.dataset.postid;
+        const textarea = event.target.parentElement.querySelector('textarea');
+        const editedContent = textarea.value;
+        saveEditedPost(postId, editedContent);
+    }
+});
   
   // Function to save the edited post
   function saveEditedPost(postId, editedContent) {
@@ -69,4 +80,3 @@ document.addEventListener('DOMContentLoaded', function() {
       const cookieValue = document.cookie.match('(^|;)\\s*' + name + '=([^;]+)');
       return cookieValue ? cookieValue.pop() : '';
   }
-});

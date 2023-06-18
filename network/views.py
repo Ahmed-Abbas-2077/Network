@@ -5,6 +5,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.core.paginator import Paginator
 from .models import User, Post, Follow
+import json
 
 def index(request):
     posts = Post.objects.order_by("-timestamp").all()
@@ -138,7 +139,7 @@ def following(request):
 def edit_post(request, post_id):
     if request.method == 'PUT':
         # Get the edited content from the request's body
-        edited_content = request.body.decode('utf-8')
+        edited_content = json.loads(request.body).get('content')
         # Find the post based on the post ID
         post = Post.objects.get(pk=post_id)
         # Check if the logged-in user is the owner of the post

@@ -1,5 +1,8 @@
 {% extends "network/layout.html" %} 
-
+{% load static %}
+{% block title %}
+    All Posts
+{% endblock %}
 {% block body %}
 <script src="https://kit.fontawesome.com/2b554022ef.js" crossorigin="anonymous"></script>
 <h1>All Posts</h1>
@@ -25,7 +28,7 @@
 
   {% for post in pagePosts %}
   <div class="card" id="post-{{ post.id }}" data-postid="{{ post.id }}">
-    <div class="card-body">
+    <div class="card-body" data-postid="{{ post.id }}">
       <a href="{% url 'profile' post.user %}"> <h5 class="card-title">{{ post.user }}</h5></a>
       <p class="card-text" id="post-content-{{ post.id }}">{{ post.content }}</p>
       <p class="card-text">{{ post.timestamp }}</p>
@@ -36,7 +39,7 @@
       </p>
       {% if user.is_authenticated %}
         {% if user == post.user %}
-            <button class="edit-btn" data-postid="{{ post.id }}" onclick="replacePostContentWithTextarea({{ post.id }})">Edit</button>
+            <button class="edit-btn" id="edit-btn-{{ post.id }}" data-postid="{{ post.id }}">Edit</button>
         {% endif %}
       {% endif %}
     </div>
@@ -53,3 +56,7 @@
     </ul>
   </nav>
   {% endblock %}
+
+{% block script %}
+<script src="{% static 'network/index.js' %}"></script>
+{% endblock %}
