@@ -33,7 +33,8 @@
       <p class="card-text" id="post-content-{{ post.id }}">{{ post.content }}</p>
       <p class="card-text">{{ post.timestamp }}</p>
       <p class="card-text">
-        <i class="fas fa-thumbs-up" style="color: #1877F2;"></i>
+        <a href="" class="like" id="like-btn-{{ post.id }}" data-postid="{{ post.id }}">Like</a>
+        <i class="fas fa-thumbs-up" id="like-{{post.id}}" style="color: #1877F2;"></i>
         {{ post.likes.count }}
         {% if post.likes.count != 1 %}likes{% else %}like{% endif %}
       </p>

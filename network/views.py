@@ -150,3 +150,21 @@ def edit_post(request, post_id):
             return JsonResponse({'message': 'Post updated successfully'})
         else:
             return JsonResponse({'error': 'You are not allowed to edit this post'}, status=403)
+        
+def like(request, post_id):
+    if request.method == 'PUT':
+        # Find the post based on the post ID
+        post = Post.objects.get(pk=post_id)
+        # Check if the logged-in user is the owner of the post
+        if post.user != request.user:
+            # Check if the logged-in user has already liked the post
+            if request.user in post.likes.all():
+                # Unlike the post
+                post.likes.remove(request.user)
+            else:
+                # Like the post
+                post.likes.add(request.user)
+            post.save()
+            return JsonResponse({'message': 'Post liked/unliked successfully'})
+        else:
+            return JsonResponse({'error': 'You are not allowed to like your own post'}, status=403)

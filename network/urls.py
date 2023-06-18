@@ -13,5 +13,5 @@ urlpatterns = [
     path("unfollow/<str:username>", views.unfollow, name="unfollow"),
     path("following", views.following, name="following"),
     path('edit-post/<int:post_id>', views.edit_post, name='edit_post'),
-    
+    path('like/<int:post_id>', views.like, name='like'),
 ]

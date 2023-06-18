@@ -6,6 +6,14 @@ document.addEventListener('DOMContentLoaded', function () {
             replacePostContentWithTextarea(postId);
         }
     });
+
+    // add a delegated event listener to handle the "Like" button click
+    document.addEventListener('click', function(event) {
+        if (event.target.classList.contains('like')) {
+            const postId = event.target.dataset.postid;
+            likePost(postId);
+        }
+    });
 });
 
 
@@ -80,3 +88,25 @@ document.addEventListener('click', function(event) {
       const cookieValue = document.cookie.match('(^|;)\\s*' + name + '=([^;]+)');
       return cookieValue ? cookieValue.pop() : '';
   }
+
+  function likePost(postId) {
+    // Send an AJAX request to like the post
+    fetch(`/like/${postId}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': getCookie('csrftoken'),
+        },
+    })
+    .then(response => {
+        if (response.ok) {
+            // Refresh the page or update the post content locally
+            location.reload();
+        } else {
+            console.error('Error liking the post');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
