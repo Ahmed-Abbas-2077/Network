@@ -1,0 +1,29 @@
+{% extends "network/layout.html" %} {% block body %}
+<script src="https://kit.fontawesome.com/2b554022ef.js" crossorigin="anonymous"></script>
+<h1>Following</h1>
+
+  {% for post in pagePosts %}
+  <div class="card">
+    <div class="card-body">
+      <a href="{% url 'profile' post.user %}"> <h5 class="card-title">{{ post.user }}</h5></a>
+      <p class="card-text">{{ post.content }}</p>
+      <p class="card-text">{{ post.timestamp }}</p>
+      <p class="card-text">
+        <i class="fas fa-thumbs-up" style="color: #1877F2;"></i>
+        {{ post.likes.count }}
+        {% if post.likes.count != 1 %}likes{% else %}like{% endif %}
+      </p>
+    </div>
+  </div>
+  {% endfor %} 
+  <nav aria-label="Page navigation example" style="margin-top: 20px;">
+    <ul class="pagination d-flex justify-content-center">
+    {% if pagePosts.has_previous %}
+      <li class="page-item"><a class="page-link" href="?page={{ pagePosts.previous_page_number }}">Previous</a></li>
+    {%endif%}
+    {% if pagePosts.has_next %}
+      <li class="page-item"><a class="page-link" href="?page={{ pagePosts.next_page_number }}">Next</a></li>
+    {%endif%}
+    </ul>
+  </nav>
+  {% endblock %}
