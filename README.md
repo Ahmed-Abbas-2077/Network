@@ -12,11 +12,11 @@
 
 ## Introduction
 
-Network is a simple yet powerful social media application designed for modern web browsers. Built with vanilla JavaScript on the frontend and Django on the backend, Network offers an alternative to the bloated, complex social media platforms of today. Users can post text-based updates, connect with friends, and much more, all in a straightforward, user-friendly environment.
+Network is a simple social media application designed for modern web browsers. Built with vanilla JavaScript on the frontend and Django on the backend, Network offers an alternative to the bloated, complex social media platforms of today. Users can post text-based updates, connect with friends, and much more, all in a straightforward, user-friendly environment.
 
 ## Features
 
-- **User Authentication**: Secure user authentication with JWT or Django's built-in system.
+- **User Authentication**: Secure user authentication with Django's built-in system.
 - **Post Updates**: Create, edit, and delete text-based posts.
 - **Follow/Unfollow**: Build your network by following and unfollowing other users.
 - **Likes and Comments**: Engage with posts by liking and commenting.
@@ -69,7 +69,7 @@ Network is a simple yet powerful social media application designed for modern we
     python manage.py runserver
     ```
 
-5. Open your web browser and navigate to `http://localhost:8000`.
+5. Open your web browser and navigate to `http://127.0.0.1:8000/`.
 
 ## Usage
 
@@ -86,4 +86,4 @@ We encourage you to contribute to Network! Feel free to add your touch on the pr
 
 ---
 
-For more information, please contact the developers via [email](mailto:aboabbasabo2017@gmail.com) or create an issue on this repository.
+For more information, please contact the developers via [email](mailto:ahmed.abbas.compsci@gmail.com) or create an issue on this repository.
