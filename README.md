@@ -1,4 +1,4 @@
-# Network: A Social Media Web App
+# Network 🌐
 
 ## Table of Contents
 
@@ -10,24 +10,24 @@
 - [Contributing](#contributing)
 - [License](#license)
 
-## Introduction
+## Introduction 💡
 
 Network is a simple social media application designed for modern web browsers. Built with vanilla JavaScript on the frontend and Django on the backend, Network offers an alternative to the bloated, complex social media platforms of today. Users can post text-based updates, connect with friends, and much more, all in a straightforward, user-friendly environment.
 
-## Features
+## Features ⚡
 
 - **User Authentication**: Secure user authentication with Django's built-in system.
 - **Post Updates**: Create, edit, and delete text-based posts.
 - **Follow/Unfollow**: Build your network by following and unfollowing other users.
 - **Likes and Comments**: Engage with posts by liking and commenting.
 
-## To-be-added
+## To-be-added 📈
 - **Profile Customization**: Edit your profile picture, username, and bio.
 - **Real-Time Notifications**: Get notified for new posts, likes, and comments in real-time.
 - **Search Functionality**: Search for users and hashtags.
 - **Responsive Design**: Looks great on both desktop and mobile.
 
-## Technologies
+## Technologies 🚀
 
 - **Frontend**
   - Vanilla JavaScript
@@ -37,7 +37,7 @@ Network is a simple social media application designed for modern web browsers. B
   - Django
   - SQLite (default), but configurable
 
-## Installation
+## Installation 🔧
 
 ### Requirements
 - Python 3.x
@@ -71,7 +71,7 @@ Network is a simple social media application designed for modern web browsers. B
 
 5. Open your web browser and navigate to `http://127.0.0.1:8000/`.
 
-## Usage
+## Usage 💻
 
 - **Registration**: First-time users should click the "Sign Up" button to create a new account.
 - **Login**: If you already have an account, click the "Login" button and enter your credentials.
@@ -80,7 +80,7 @@ Network is a simple social media application designed for modern web browsers. B
 - **Posting**: Use the "Create Post" button to add a new post.
 - **Search**: Use the search bar at the top to find users or hashtags.
 
-## Contributing
+## Contributing 💚
 
 We encourage you to contribute to Network! Feel free to add your touch on the project.
 
